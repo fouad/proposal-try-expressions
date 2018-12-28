@@ -1,0 +1,26 @@
+{
+  "name": "babel-plugin-transform-try-await",
+  "version": "7.0.0",
+  "description": "Turn try await into valid ES2017",
+  "repository": "https://github.com/fouad/try-await/tree/master/packages/babel-plugin-transform-try-await",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@babel/helper-annotate-as-pure": "^7.0.0",
+    "@babel/helper-module-imports": "^7.0.0",
+    "@babel/helper-plugin-utils": "^7.0.0",
+    "@babel/helper-wrap-function": "^7.2.0",
+    "@babel/template": "^7.2.2",
+    "@babel/traverse": "^7.2.3"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.0.0-0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/helper-plugin-test-runner": "^7.0.0"
+  }
+}
