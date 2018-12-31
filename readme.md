@@ -1,5 +1,5 @@
 <p align="center">
-  <strong><code>try await</code></strong>
+  <strong><code>try expressions</code></strong>
 </p>
 
 <p align="center">
