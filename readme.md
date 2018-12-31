@@ -4,14 +4,14 @@
 
 <p align="center">
   Proposal for simpler error handling<br/>
-  when using Async Functions in ECMAScript
+  when using functions and Promises in ECMAScript
 </p>
 
 <br/>
 
 ## Summary
 
-The current `try catch` error handling pattern leads to uncaught exceptions when dealing with promises. This is a new `try` syntax for Async Functions to combine a Promise's value and error into a single return as an Array.
+The current `try...catch` error handling pattern leads to uncaught exceptions when dealing with promises. This is a new `try` syntax to combine a Promise's value and error or wrap an expression in a `try...catch` into a single return type as an Array.
 
 ```js
 let [value, err] = try await fetch()
@@ -26,7 +26,7 @@ try {
 }
 ```
 
-> It's backwards-compatible with existing `try catch` usage and functions that return a Promise.
+> It's backwards-compatible with existing `try...catch` usage and functions that return a Promise.
 
 ## Example
 
@@ -44,6 +44,10 @@ async function fetchUser(userId) {
   
   return apiRes
 }
+
+// Or for error reporting
+
+reportError((try importantFn())[1])
 ```
 
 ## Design Decisions
@@ -97,7 +101,7 @@ async function fetchUser(userId) {
 
 ## Adoption Strategy
 
-- This proposal is implemented as a [Babel plugin](./packages/babel-plugin-transform-try-await) to compile `try await` code down to valid ECMAScript
+- This proposal is implemented as a [Babel plugin](./packages/babel-plugin-transform-try-await) to compile try expressions down to valid ECMAScript
 - Backwards-compatible with existing exception handling and Promise spec
 - Open to community for comment and testing
 
