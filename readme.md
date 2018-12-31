@@ -51,11 +51,15 @@ async function fetchUser(userId) {
 - **Array return type.** This removes unnecessary opinion and bytes from source compared to using an Object.
   - 👍 `let [myValue, myError] = try await fn()`
   - 👎 `let { value: myValue, error: myError } = try await fn()`
+- **Array order inspired by Golang.** This seems to make more sense instead of callback-style with error as the first argument.
+  - `res, err := http.Get(API_HOST)`
 - **Promises only.** Synchronous code (e.g. `let [value, error] = try fn()`) is a much broader code surface area. This proposal can serve as experiment with the pattern.
 
 ## Alternatives
 
 ### Status Quo
+
+#### async/await
 
 ```js
 async function fetchUser(userId) {
@@ -68,6 +72,22 @@ async function fetchUser(userId) {
       throw apiErr
     }
   }
+}
+```
+
+#### async/await + catch
+
+```js
+async function fetchUser(userId) {
+  let gqlErr, gqlErr
+
+  gqlRes = await fetch(GRAPHQL_HOST + queryForUser(userId)).catch(err => gqlErr = err)
+  
+  if (gqlErr) {
+    return await fetch(`${V1_API_HOST}/v1/users/${userId}`)
+  }
+  
+  return gqlRes
 }
 ```
 
