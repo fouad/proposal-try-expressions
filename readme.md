@@ -11,7 +11,7 @@
 
 ## Summary
 
-The current `try...catch` error handling pattern leads to uncaught exceptions when dealing with promises. This is a new `try` syntax to combine a Promise's value and error or wrap an expression in a `try...catch` into a single return type as an Array.
+The current `try...catch` error handling pattern leads to uncaught exceptions when dealing with promises. This is a new `try` syntax to combine a Promise's value and error or wrap an expression in a `try...catch` with a single return type, an Array.
 
 ```js
 let [value, err] = try await fetch()
@@ -26,7 +26,7 @@ try {
 }
 ```
 
-> It's backwards-compatible with existing `try...catch` usage and functions that return a Promise.
+> It's backwards-compatible with existing `try...catch` usage, functions and expressions.
 
 ## Example
 
@@ -56,7 +56,6 @@ reportError((try importantFn())[1])
   - 👍 `let [myValue, myError] = try await fn()`
   - 👎 `let { value: myValue, error: myError } = try await fn()`
 - **Array order inspired by Golang.** This seems to make more sense instead of callback-style with error as the first argument, e.g. `res, err := http.Get(API_HOST)`
-- **Promises only.** Synchronous code (e.g. `let [value, error] = try fn()`) is a much broader code surface area. This proposal can serve as experiment with the pattern.
 
 ## Alternatives
 
@@ -105,6 +104,6 @@ async function fetchUser(userId) {
 - Backwards-compatible with existing exception handling and Promise spec
 - Open to community for comment and testing
 
+## Acknowledgements
 
-
-
+- [Zack Argyle](https://twitter.com/ZackArgyle/status/1078448278352482304)
