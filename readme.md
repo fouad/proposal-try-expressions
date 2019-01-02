@@ -14,11 +14,19 @@
 The current `try...catch` error handling pattern leads to uncaught exceptions when dealing with promises. This is a new `try` syntax to combine a Promise's value and error or wrap an expression in a `try...catch` with a single return type, an Array.
 
 ```js
+let [json, jsonErr] = try JSON.parse('{}')
 let [value, err] = try await fetch()
 
 // instead of
 
-let value, err
+let json, jsonErr, value, err
+
+try {
+  json = JSON.parse('{}')
+} catch (_jsonErr) {
+  jsonErr = _jsonErr
+}
+
 try {
   value = await fetch()
 } catch (_err) {
