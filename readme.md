@@ -11,7 +11,7 @@
 
 ## Summary
 
-The current `try...catch` error handling pattern leads to uncaught exceptions when dealing with promises. This is a new `try` syntax to combine a Promise's value and error or wrap an expression in a `try...catch` with a single return type, an Array.
+The current `try...catch` error handling pattern leads to uncaught exceptions when dealing with promises. This is a new `try` syntax to combine a Promise's value and error or wrap an expression in a `try...catch` with a [single return type](#return-type).
 
 ```js
 let [json, jsonErr] = try JSON.parse('{}')
@@ -35,6 +35,15 @@ try {
 ```
 
 > It's backwards-compatible with existing `try...catch` usage, functions and expressions.
+
+## Return Type
+
+```ts
+interface TryExpressionReturn {
+  [0]: any
+  [1]: Error
+}
+```
 
 ## Example
 
