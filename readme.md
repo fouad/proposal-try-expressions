@@ -64,6 +64,9 @@ async function fetchUser(userId) {
 
 // Or for error reporting
 
+let [, err] = try importantFn()
+
+reprotError(err)
 reportError((try importantFn())[1])
 ```
 
